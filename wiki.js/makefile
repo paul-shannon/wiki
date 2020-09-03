@@ -1,8 +1,17 @@
+DIR=/Users/pshannon/
+DIR=/local/pshannon/github/wiki/wiki.js
+
 dockerRun:
 	docker run -d -p 9090:3000 --name wiki --restart unless-stopped \
-            -v /Users/paul/src/wiki/config.yml:/wiki/config.yml \
-            -v /Users/paul/src/wiki/database.sqlite:/wiki/database.sqlite \
+            -v $(DIR)/config.yml:/wiki/config.yml \
+            -v $(DIR)/lc.sqlite:/wiki/database.sqlite \
             requarks/wiki:2
 
+dockerRunTrena:
+	docker run -d -p 9090:3000 --name wiki --restart unless-stopped \
+            -v $(DIR):/wiki \
+            requarks/wiki:2
 
-            -v /Users/paul/src/wiki:/wiki \
+pull:
+	docker pull requarks/wiki:2
+
